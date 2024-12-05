@@ -15,6 +15,42 @@ spec:
         limits:
           memory: "128Mi"
           cpu: "500m"
+        
+# --COMANDI E TEORIA--
+
+# -NODE AFFINITY-
+
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution/preferredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: size
+#           operator: In / NotIn / Exists
+#           values:
+#           - Large
+#           - Medium
+
+# -NODE SELECTOR-
+
+# nodeSelector:
+#   size: Large
+
+# per funzionare il nodeselector bisogna assegnare la label al node
+# kubectl label nodes node-name label-key=label-value
+# kubectl label nodes node01 size=Large
+
+# -TAINTS & TOLERATIONS-
+
+# tolerations:
+#    - key: "app"
+#      operatir: "Equal"
+#      value: "blue"
+#      effect: "NoSchedule"
+
+# taint al nodo:kubectl taint nodes node-name key=value:taint-effect
+# es: kubectl taint nodes node01 app=blue:NoSchedule
 
 
-# per creare Pod: kubectl create -f pod-definition.yaml
+# -COMANDI VARI-
+# per creare Pod: kubectl apply -f pod-definition.yaml
