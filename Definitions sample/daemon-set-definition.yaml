@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: monitoring-daemon
+spec:
+  selector:
+    matchLabels:
+      app: monitoring-agent
+  template:
+    metadata:
+      labels:
+        app: monitoring-agent
+    spec:
+      containers:
+      - name: monitoring-agent
+        image: debian
+  
+# deamon set è un contianer che viene creato sempre in ogni pod, utile se serve un agent di monitoring su ogni pod
+# lo crea in automatico quindi non è necessario creare il container a mano ogni volta
