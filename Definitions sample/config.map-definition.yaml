@@ -1,0 +1,16 @@
+# in modo imperativo (tramite comando)
+# kubectl create configmap \
+#  <config-name> --from-literal=<key>=<value>
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfigmap
+  labels:
+    app: myapplication
+data:
+  my-key: my-value
+  my-key2: my-value2
+
+# possono essere usati per enc, volumes ecc

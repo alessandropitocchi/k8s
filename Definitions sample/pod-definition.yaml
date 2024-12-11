@@ -21,6 +21,14 @@ spec:
         
 # --COMANDI E TEORIA--
 
+# ROLLOUT E SOLLBACk
+
+# la strategia di default per il rollout dei container in k8s è il rolling update ovvero viene aggiornato un pod alla volta in modo da non creare dei down dell' app temporanea
+# è possibile anche eseguire il rollbacl, k8s tiene in memoria una copua della versione precedente
+# per farlo kubectl rollout undo deployment
+# per vedere lo storico kubectl rollout history depolyment
+# per vedere lo status del deploy kubectl rollout status deployment
+# la strategia applicata al deploy si può vedere con describe alla voce StrategyType
 # -NODE AFFINITY-
 
 # affinity:
@@ -57,3 +65,25 @@ spec:
 
 # -COMANDI VARI-
 # per creare Pod: kubectl apply -f pod-definition.yaml
+# si possono specificare dei comandi da eseguire nei pod da lanciare per farlo aggiugnere nel continer la voce args: valore (stessa indentazione del nome e dell' immagine del container )
+# spec:
+#  containers:
+#    - name: nginx-controller
+#      image: nginxù
+#      command: ["sleedp2"] // corrisponde al comando
+#      args: ["10"] // valore comando#
+# per impostare un environment usare valure env
+# env:
+#  - name: nome
+#    value: pink
+# i valori env di possono salvare su un file apposito chiamato configmap e importare questi dati nel pod
+# envFrom:
+#  - configMapRef: 
+#         name: nome_config
+#
+# secrets
+#
+# envFrom:
+#  - secretRef: 
+#         name: nomesecret
+#

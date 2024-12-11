@@ -22,3 +22,7 @@ spec:
   selector:
     matchLabels:
       type: front-end
+
+
+# cambaire image container 
+# kubectl set image deployment/nome nome_container=nuova_immagine
