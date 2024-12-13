@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-app-deploy
+  labels:
+    app: webpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+        app: webapp
+  template:
+    metadata:
+      name: hwa-pod
+      labels:
+        app: webapp
+    spec: 
+      containers:
+      - name: webapp
+        image: registry.digitalocean.com/cont-reg-ap:webapp-html:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+--- 
+apiVersion: v1 
+kind: Service
+metadata: 
+  name: webapp-service
+spec:
+  selector: 
+    app: webapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
